@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NutriSync – Sample App Mockup</title>
+    <style>
+        :root{
+            --bg:#0f172a;           /* deep slate */
+            --panel:#0b1227;        /* slightly darker */
+            --card:#111931;
+            --text:#e5e7eb;
+            --muted:#9aa4b2;
+            --brand:#34d399;        /* emerald */
+            --accent:#60a5fa;       /* blue */
+            --warning:#f59e0b;
+            --danger:#ef4444;
+            --ring: 16px;
+            --radius: 18px;
+        }
+        *{box-sizing:border-box}
+        body{margin:0;background:linear-gradient(180deg, #ffffff, #ffffff 20%, #ffffff 100%);font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";color:var(--text);display:flex;align-items:center;justify-content:center;min-height:100vh;padding:24px}
+        /* phone frame */
+        .phone{width:390px;max-width:100%;height:844px;border-radius:38px;background:radial-gradient(1200px 800px at 50% -200px,#1f2b52 0,#0b1227 60%);box-shadow:0 20px 60px rgba(0,0,0,.6), inset 0 0 0 12px #0a0f1f, inset 0 0 0 18px #10172d;position:relative;overflow:hidden}
+        .notch{position:absolute;height:30px;width:180px;background:#0a0f1f;border-bottom-left-radius:18px;border-bottom-right-radius:18px;left:50%;top:0;transform:translateX(-50%)}
+        header{display:flex;align-items:center;justify-content:space-between;padding:22px 22px 10px}
+        .brand{display:flex;gap:10px;align-items:center}
+        .logo{width:34px;height:34px;border-radius:10px;background:conic-gradient(from 220deg,#34d399,#60a5fa,#34d399);display:grid;place-items:center;box-shadow:0 4px 18px rgba(52,211,153,.4)}
+        .logo svg{filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))}
+        h1{font-size:18px;line-height:1.1;margin:0}
+        .muted{color:var(--muted);font-size:12px}
+        .score{display:flex;align-items:center;gap:12px}
+        .ring{position:relative;width:54px;height:54px}
+        .ring svg{position:absolute;inset:0}
+        .ring .num{position:absolute;inset:0;display:grid;place-items:center;font-weight:700;font-size:12px}
+
+        .content{padding:10px 20px 88px;overflow:auto;height:100%}
+        .search{display:flex;gap:8px;background:#0f172a;border:1px solid #1f2a44;border-radius:14px;padding:10px 12px;align-items:center}
+        .search input{flex:1;background:transparent;border:0;outline:0;color:var(--text)}
+        .chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 2px}
+        .chip{background:#0f172a;border:1px solid #243050;color:var(--text);padding:8px 10px;border-radius:999px;font-size:12px;display:flex;gap:8px;align-items:center}
+        .chip[data-active="true"]{background:rgba(52,211,153,.15);border-color:#2db784}
+
+        .section{margin-top:14px}
+        .section h3{font-size:14px;margin:0 0 8px;color:#cbd5e1}
+
+        .card{background:linear-gradient(180deg,#121b36,#0f172a);border:1px solid #1f2a44;border-radius:var(--radius);padding:12px;display:grid;grid-template-columns:100px 1fr;gap:12px;align-items:center}
+        .thumb{width:100%;height:96px;border-radius:14px;background:linear-gradient(135deg,#2dd4bf 0,#60a5fa 100%);display:grid;place-items:center;font-size:26px}
+        .tags{display:flex;gap:6px;flex-wrap:wrap}
+        .tag{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid #2a3558;color:#cbd5e1;background:#0f172a}
+        .kpis{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}
+        .kpi{font-size:11px;background:#0f172a;border:1px solid #223055;border-radius:8px;padding:6px 8px}
+        .actions{display:flex;gap:8px}
+        .btn{appearance:none;border:0;border-radius:10px;padding:9px 12px;font-weight:600}
+        .btn.primary{background:linear-gradient(180deg,#34d399,#10b981);color:#052e2b}
+        .btn.ghost{background:#0f172a;border:1px solid #223055;color:#cbd5e1}
+
+        .subtle{font-size:12px;color:#9fb0c6}
+
+        .grid{display:grid;gap:10px}
+
+        /* bottom nav */
+        nav{position:absolute;left:0;right:0;bottom:0;background:#0a0f1f;border-top:1px solid #1f2a44;padding:8px 12px}
+        .tabs{display:flex;justify-content:space-between}
+        .tab{flex:1;text-align:center;color:#95a3b8;font-size:11px;padding:10px 0;border-radius:12px}
+        .tab[data-active="true"]{color:#d1fae5;background:rgba(52,211,153,.12)}
+
+        /* modal */
+        .modal{position:fixed;inset:0;background:rgba(2,6,23,.65);display:none;align-items:center;justify-content:center;padding:20px}
+        .modal .panel{background:#0b1227;border:1px solid #1f2a44;border-radius:18px;max-width:520px;width:100%;padding:16px}
+        .modal h4{margin:2px 0 8px}
+        .product{display:flex;align-items:center;gap:10px;background:#0f172a;border:1px solid #223055;border-radius:12px;padding:10px}
+        .pimg{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#a78bfa,#60a5fa);display:grid;place-items:center}
+        .row{display:flex;gap:10px;align-items:center;justify-content:space-between}
+        .qty{display:flex;gap:8px;align-items:center}
+        .qty button{border:1px solid #2a3558;background:#0f172a;color:#cbd5e1;border-radius:8px;width:28px;height:28px}
+        .panel .footer{display:flex;gap:10px;margin-top:10px}
+
+        a.link{color:#93c5fd;text-decoration:none}
+    </style>
+</head>
+<body>
+<div class="phone" role="application" aria-label="NutriSync demo">
+    <div class="notch" aria-hidden="true"></div>
+    <header>
+        <div class="brand">
+            <div class="logo" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M12 3c4.97 0 9 4.03 9 9s-4.03 9-9 9-9-4.03-9-9 4.03-9 9-9Z" stroke="white" stroke-width="1.8" opacity=".65"/>
+                    <path d="M7.5 12.4l2.8 2.7 6.3-6.2" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div>
+                <h1>NutriSync</h1>
+                <div class="muted">Healthy eating, made personal</div>
+            </div>
+        </div>
+
+        <div class="score" aria-label="Health score 82">
+            <div class="ring" aria-hidden="true">
+                <svg viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r="15.5" fill="none" stroke="#1f2a44" stroke-width="3"></circle>
+                    <circle cx="18" cy="18" r="15.5" fill="none" stroke="#34d399" stroke-width="3" stroke-linecap="round" stroke-dasharray="82 100" transform="rotate(-90 18 18)"></circle>
+                </svg>
+                <div class="num">82</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="content" id="scroll">
+        <label class="search" aria-label="Search meals and products">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.3-4.3" stroke="#94a3b8" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="#94a3b8" stroke-width="2"/></svg>
+            <input type="search" placeholder="Search meals, cuisines, or products…" />
+        </label>
+
+        <div class="chips" role="group" aria-label="Health goals">
+            <button class="chip" data-active="true">❤️ Heart health</button>
+            <button class="chip">⚡ Energy</button>
+            <button class="chip">⚖️ Weight balance</button>
+            <button class="chip">🧠 Focus</button>
+        </div>
+        <div class="chips" role="group" aria-label="Dietary & cultural preferences">
+            <button class="chip" data-active="true">🌍 Mediterranean</button>
+            <button class="chip">🇮🇳 Indian</button>
+            <button class="chip">🇯🇵 Japanese</button>
+            <button class="chip">🟢 Vegetarian</button>
+            <button class="chip">🕌 Halal</button>
+            <button class="chip">✡️ Kosher</button>
+            <button class="chip">🚫 Gluten</button>
+        </div>
+
+        <section class="section">
+            <h3>Today’s smart picks</h3>
+            <div class="grid">
+                <!-- Card 1 -->
+                <article class="card" aria-label="Grilled Salmon with Quinoa">
+                    <div class="thumb" aria-hidden="true">🍣</div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                            <strong>Grilled Salmon with Quinoa</strong>
+                            <span class="tag">Mediterranean</span>
+                        </div>
+                        <div class="kpis">
+                            <span class="kpi">420 kcal</span>
+                            <span class="kpi">28g protein</span>
+                            <span class="kpi">Low sodium</span>
+                            <span class="kpi">Omega‑3 rich</span>
+                        </div>
+                        <div class="actions">
+                            <button class="btn ghost" onclick="openModal('salmon')">View products</button>
+                            <button class="btn primary">Add to plan</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card" aria-label="Chana Masala with Brown Rice">
+                    <div class="thumb" aria-hidden="true">🍛</div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                            <strong>Chana Masala with Brown Rice</strong>
+                            <span class="tag">Indian • Vegetarian • Halal</span>
+                        </div>
+                        <div class="kpis">
+                            <span class="kpi">380 kcal</span>
+                            <span class="kpi">22g protein</span>
+                            <span class="kpi">High fiber</span>
+                            <span class="kpi">Low saturated fat</span>
+                        </div>
+                        <div class="actions">
+                            <button class="btn ghost" onclick="openModal('chana')">View products</button>
+                            <button class="btn primary">Add to plan</button>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card" aria-label="Soba Noodle Bowl with Tofu">
+                    <div class="thumb" aria-hidden="true">🥢</div>
+                    <div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+                            <strong>Soba Noodle Bowl with Tofu</strong>
+                            <span class="tag">Japanese • Gluten‑aware</span>
+                        </div>
+                        <div class="kpis">
+                            <span class="kpi">410 kcal</span>
+                            <span class="kpi">26g protein</span>
+                            <span class="kpi">Low sugar</span>
+                            <span class="kpi">Iodine source</span>
+                        </div>
+                        <div class="actions">
+                            <button class="btn ghost" onclick="openModal('soba')">View products</button>
+                            <button class="btn primary">Add to plan</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section">
+            <h3>Grocery shortcuts</h3>
+            <div class="grid">
+                <div class="card" style="grid-template-columns:1fr" aria-label="Build your cart by goal">
+                    <div class="row">
+                        <div>
+                            <strong>Build my cart for Heart Health</strong>
+                            <div class="subtle">Curated low‑sodium, omega‑3, and high‑fiber picks</div>
+                        </div>
+                        <button class="btn primary" onclick="openModal('bundle')">Open</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <nav aria-label="Primary">
+        <div class="tabs">
+            <div class="tab" data-active="true">Discover</div>
+            <div class="tab">Plan</div>
+            <div class="tab">Shop</div>
+            <div class="tab">Profile</div>
+        </div>
+    </nav>
+</div>
+
+<!-- Modal: products suggestion -->
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Recommended products">
+    <div class="panel">
+        <div class="row">
+            <h4 id="modalTitle">Recommended products</h4>
+            <button class="btn ghost" onclick="closeModal()">Close</button>
+        </div>
+        <div id="modalBody" class="grid" style="margin-top:8px"></div>
+        <div class="footer">
+            <button class="btn ghost" onclick="closeModal()">Keep browsing</button>
+            <button class="btn primary">Add all to cart</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const db = {
+        salmon:[
+            {name:"Atlantic Salmon Fillet (2x)", note:"Omega‑3 rich", price:"$12.90", store:"Local Market", img:"🧊"},
+            {name:"Tricolor Quinoa", note:"Complete protein", price:"$4.80", store:"Global Foods", img:"🌾"},
+            {name:"Lemon", note:"Fresh produce", price:"$0.79", store:"Green Grocer", img:"🍋"},
+            {name:"Arugula", note:"Iron & folate", price:"$2.20", store:"Green Grocer", img:"🥗"},
+        ],
+        chana:[
+            {name:"Canned Chickpeas", note:"High fiber", price:"$1.29", store:"World Bazaar", img:"🥫"},
+            {name:"No‑salt Tomato Puree", note:"Low sodium", price:"$1.10", store:"Local Market", img:"🍅"},
+            {name:"Garam Masala", note:"Authentic spice blend", price:"$3.40", store:"Desi Mart", img:"🧂"},
+            {name:"Brown Basmati Rice", note:"Low GI", price:"$5.30", store:"Desi Mart", img:"🍚"},
+        ],
+        soba:[
+            {name:"100% Buckwheat Soba", note:"Gluten‑aware", price:"$4.50", store:"Asia Foods", img:"🍜"},
+            {name:"Organic Firm Tofu", note:"26g protein", price:"$2.60", store:"Asia Foods", img:"🧈"},
+            {name:"Low‑sodium Soy Sauce", note:"Heart‑smart", price:"$2.10", store:"Asia Foods", img:"🧂"},
+            {name:"Edamame", note:"Plant protein", price:"$3.00", store:"Asia Foods", img:"🫘"},
+        ],
+        bundle:[
+            {name:"Oats", note:"Soluble fiber", price:"$2.10", store:"Global Foods", img:"🌾"},
+            {name:"Chia Seeds", note:"ALA omega‑3", price:"$3.90", store:"Global Foods", img:"🟤"},
+            {name:"Canned Tuna (low‑sodium)", note:"EPA/DHA", price:"$2.30", store:"Local Market", img:"🐟"},
+            {name:"Mixed Berries", note:"Antioxidants", price:"$3.60", store:"Green Grocer", img:"🫐"},
+        ]
+    };
+
+    function openModal(key){
+        const body = document.getElementById('modalBody');
+        const title = document.getElementById('modalTitle');
+        body.innerHTML = '';
+        (db[key]||[]).forEach(item=>{
+            const el = document.createElement('div');
+            el.className = 'product';
+            el.innerHTML = `
+          <div class="pimg" aria-hidden="true">${item.img}</div>
+          <div style="flex:1">
+            <strong>${item.name}</strong>
+            <div class="subtle">${item.note} • ${item.store}</div>
+          </div>
+          <div class="qty"><button>-</button><span aria-label="quantity">1</span><button>+</button></div>
+          <div style="font-weight:700">${item.price}</div>
+        `;
+            body.appendChild(el);
+        });
+        title.textContent = key==='bundle' ? 'Heart Health cart (starter)' : 'Recommended products';
+        document.getElementById('modal').style.display='flex';
+    }
+    function closeModal(){document.getElementById('modal').style.display='none'}
+
+    // chip toggles (visual only)
+    document.querySelectorAll('.chip').forEach(ch=>{
+        ch.addEventListener('click',()=>{
+            const v = ch.getAttribute('data-active')==='true';
+            ch.setAttribute('data-active', v? 'false' : 'true');
+        })
+    })
+
+    // basic focus management for accessibility
+    document.getElementById('modal').addEventListener('click', (e)=>{
+        if(e.target.id==='modal') closeModal();
+    });
+</script>
+</body>
+</html>
