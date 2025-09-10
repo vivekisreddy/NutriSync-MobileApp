@@ -381,7 +381,8 @@ h1 {
 
 .form-group input,
 .form-group select,
-.form-group textarea {
+.form-group textarea,
+.form-group p {
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -461,6 +462,7 @@ nav {
     max-height: 80%;
     overflow-y: auto;
     box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    padding: 20px;
 }
 
 .modal h4 {
@@ -514,6 +516,133 @@ nav {
     margin-top: 16px;
     padding-top: 16px;
     border-top: 1px solid var(--border);
+}
+
+.plan-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.plan-day {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.plan-day strong {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+}
+
+.plan-day ul {
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+.plan-day li {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.ai-note {
+    font-size: 12px;
+    color: var(--green);
+    background: var(--light-green);
+    padding: 8px;
+    border-radius: 8px;
+}
+
+.shopping-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.category {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+.category strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.category ul {
+    list-style: none;
+}
+
+.category li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.category li input[type="checkbox"] {
+    accent-color: var(--green);
+}
+
+.total {
+    text-align: right;
+    font-weight: 600;
+    margin-top: 16px;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: var(--panel);
+    border-radius: var(--radius);
+}
+
+.chat-message {
+    padding: 10px 14px;
+    border-radius: 12px;
+    font-size: 14px;
+    max-width: 80%;
+}
+
+.chat-message.ai {
+    background: var(--light-green);
+    align-self: flex-start;
+}
+
+.chat-message.user {
+    background: var(--peach);
+    align-self: flex-end;
+    color: var(--text);
+}
+
+.chat-form {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
 }
 
 @media (max-width: 400px) {

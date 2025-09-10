@@ -34,7 +34,7 @@
             </div>
         </div>
     </header>
-    <div class="content" id="scroll">
+    <div class="content active" id="discover-content">
         <div class="search-container">
             <label class="search" aria-label="Search meals and products">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3" stroke="#757575" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="#757575" stroke-width="2"/></svg>
@@ -52,6 +52,8 @@
                 <button class="chip" data-active="true" onclick="toggleChip(this)">Mediterranean</button>
                 <button class="chip" onclick="toggleChip(this)">Indian</button>
                 <button class="chip" onclick="toggleChip(this)">Japanese</button>
+                <button class="chip" onclick="toggleChip(this)">Mexican</button>
+                <button class="chip" onclick="toggleChip(this)">African</button>
                 <button class="chip" onclick="toggleChip(this)">Vegetarian</button>
                 <button class="chip" onclick="toggleChip(this)">Halal</button>
                 <button class="chip" onclick="toggleChip(this)">Kosher</button>
@@ -117,37 +119,191 @@
                             <button class="btn primary" onclick="addToPlan('soba')">Add to Plan</button>
                         </div>
                     </div>
-            </div>
-    </div>
-    </section>
-    <section class="section">
-        <h3>Smart Shopping to Reduce Waste</h3>
-        <div class="grid">
-            <div class="card full-width" aria-label="Build cart for goal">
-                <div class="row">
-                    <div>
-                        <strong>Build Cart for Heart Health</strong>
-                        <div class="subtle">Optimized using your pantry items: low-sodium, omega-3, high-fiber</div>
+                </article>
+                <article class="card" aria-label="Enchiladas with Black Beans">
+                    <div class="thumb">🌯</div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <strong>Enchiladas with Black Beans</strong>
+                            <span class="tag">Mexican • Vegetarian</span>
+                        </div>
+                        <div class="kpis">
+                            <span class="kpi">450 kcal</span>
+                            <span class="kpi">18g Protein</span>
+                            <span class="kpi">High Fiber</span>
+                            <span class="kpi">Antioxidant Rich</span>
+                        </div>
+                        <div class="actions">
+                            <button class="btn ghost" onclick="openModal('enchiladas')">View Products</button>
+                            <button class="btn primary" onclick="addToPlan('enchiladas')">Add to Plan</button>
+                        </div>
                     </div>
-                    <button class="btn primary" onclick="openModal('bundle')">Build Cart</button>
+                </article>
+                <article class="card" aria-label="Jollof Rice with Plantains">
+                    <div class="thumb">🍚</div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <strong>Jollof Rice with Plantains</strong>
+                            <span class="tag">African • Halal</span>
+                        </div>
+                        <div class="kpis">
+                            <span class="kpi">390 kcal</span>
+                            <span class="kpi">12g Protein</span>
+                            <span class="kpi">Vitamin C Rich</span>
+                            <span class="kpi">Low Fat</span>
+                        </div>
+                        <div class="actions">
+                            <button class="btn ghost" onclick="openModal('jollof')">View Products</button>
+                            <button class="btn primary" onclick="addToPlan('jollof')">Add to Plan</button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+        <section class="section">
+            <h3>Smart Shopping to Reduce Waste</h3>
+            <div class="grid">
+                <div class="card full-width" aria-label="Build cart for goal">
+                    <div class="row">
+                        <div>
+                            <strong>Build Cart for Heart Health</strong>
+                            <div class="subtle">Optimized using your pantry items: low-sodium, omega-3, high-fiber</div>
+                        </div>
+                        <button class="btn primary" onclick="openModal('bundle')">Build Cart</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="section ai-agent-section">
-        <h3>Create Your AI Nutrition Agent</h3>
-        <p class="subtle">Build a custom AI agent tailored to your health goals, cultural preferences, and dietary needs for personalized advice.</p>
-        <button class="btn primary full-width" onclick="openAIAgentModal()">Create AI Agent</button>
-    </section>
-</div>
-<nav aria-label="Primary navigation">
-    <div class="tabs">
-        <button class="tab active" onclick="switchTab('discover')">Discover</button>
-        <button class="tab" onclick="switchTab('plan')">My Plan</button>
-        <button class="tab" onclick="switchTab('shop')">Shop</button>
-        <button class="tab" onclick="switchTab('profile')">Profile</button>
+        </section>
+        <section class="section ai-agent-section">
+            <h3>Create Your AI Nutrition Agent</h3>
+            <p class="subtle">Build a custom AI agent tailored to your health goals, cultural preferences, and dietary needs for personalized advice.</p>
+            <button class="btn primary full-width" onclick="openAIAgentModal()">Create AI Agent</button>
+        </section>
     </div>
-</nav>
+    <div class="content" id="plan-content" style="display: none;">
+        <section class="section">
+            <h3>Your AI-Generated Weekly Plan</h3>
+            <p class="subtle">Tailored to your Indian cultural preferences, Heart Health goals, and Vegetarian diet. AI optimized for balance and variety.</p>
+            <div class="plan-calendar">
+                <div class="plan-day">
+                    <strong>Monday</strong>
+                    <ul>
+                        <li>Breakfast: Yogurt Parfait with Fruits (Indian twist with mango) - 300 kcal</li>
+                        <li>Lunch: Chana Masala with Brown Rice - 380 kcal</li>
+                        <li>Dinner: Vegetable Biryani - 420 kcal</li>
+                        <li>Snack: Almonds - 150 kcal</li>
+                    </ul>
+                    <div class="ai-note">AI Tip: This day focuses on high-fiber Indian staples to support heart health.</div>
+                </div>
+                <div class="plan-day">
+                    <strong>Tuesday</strong>
+                    <ul>
+                        <li>Breakfast: Idli with Sambar - 280 kcal</li>
+                        <li>Lunch: Paneer Tikka Salad - 350 kcal</li>
+                        <li>Dinner: Dal Tadka with Roti - 400 kcal</li>
+                        <li>Snack: Fresh Fruit - 100 kcal</li>
+                    </ul>
+                    <div class="ai-note">AI Tip: Incorporated ethnic spices for flavor without added sodium.</div>
+                </div>
+                <!-- Add more days as needed -->
+                <div class="plan-day">
+                    <strong>Wednesday</strong>
+                    <ul>
+                        <li>Breakfast: Poha with Vegetables - 320 kcal</li>
+                        <li>Lunch: Rajma Curry with Quinoa - 390 kcal</li>
+                        <li>Dinner: Stuffed Paratha with Yogurt - 410 kcal</li>
+                        <li>Snack: Yogurt - 120 kcal</li>
+                    </ul>
+                    <div class="ai-note">AI Tip: Balanced proteins from legumes, aligned with cultural traditions.</div>
+                </div>
+            </div>
+            <button class="btn primary full-width" onclick="generateNewPlan()">Regenerate Plan with AI</button>
+        </section>
+    </div>
+    <div class="content" id="shop-content" style="display: none;">
+        <section class="section">
+            <h3>AI-Optimized Shopping List</h3>
+            <p class="subtle">Generated based on your plan, pantry, and cultural preferences. Reduces waste by suggesting only what's needed.</p>
+            <div class="shopping-list">
+                <div class="category">
+                    <strong>Produce</strong>
+                    <ul>
+                        <li><input type="checkbox"> Mangoes (2) - $3.50 <span class="subtle">For Indian parfait</span></li>
+                        <li><input type="checkbox"> Lemons (4) - $1.20</li>
+                        <li><input type="checkbox"> Vegetables Mix (for Biryani) - $4.80</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <strong>Grains & Staples</strong>
+                    <ul>
+                        <li><input type="checkbox"> Brown Rice (1kg) - $5.30 <span class="subtle">Halal certified</span></li>
+                        <li><input type="checkbox"> Quinoa (500g) - $4.80</li>
+                        <li><input type="checkbox"> Roti Flour - $2.90</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <strong>Proteins</strong>
+                    <ul>
+                        <li><input type="checkbox"> Chickpeas (2 cans) - $2.58 <span class="subtle">Vegetarian source</span></li>
+                        <li><input type="checkbox"> Paneer (200g) - $3.20</li>
+                    </ul>
+                </div>
+                <div class="category">
+                    <strong>Spices & Condiments</strong>
+                    <ul>
+                        <li><input type="checkbox"> Garam Masala - $3.40 <span class="subtle">Authentic Indian blend</span></li>
+                        <li><input type="checkbox"> Low-Sodium Soy Sauce - $2.10</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="total">Estimated Total: $34.08</div>
+            <button class="btn primary full-width" onclick="optimizeShopping()">Optimize with AI (Reduce Waste)</button>
+        </section>
+    </div>
+    <div class="content" id="profile-content" style="display: none;">
+        <section class="section">
+            <h3>Your Profile</h3>
+            <div class="profile-info">
+                <div class="form-group">
+                    <label>Health Goals</label>
+                    <p>Heart Health, Energy Boost</p>
+                </div>
+                <div class="form-group">
+                    <label>Cultural Preferences</label>
+                    <p>Indian, Vegetarian, Halal</p>
+                </div>
+                <div class="form-group">
+                    <label>Dietary Needs</label>
+                    <p>Low sodium, High fiber, No dairy allergies</p>
+                </div>
+                <button class="btn ghost full-width" onclick="editProfile()">Edit Preferences</button>
+            </div>
+        </section>
+        <section class="section">
+            <h3>Your AI Agents</h3>
+            <div class="grid">
+                <div class="card full-width">
+                    <strong>My Heart Health Guide</strong>
+                    <div class="subtle">Focus: Heart Health, Indian, Vegetarian</div>
+                    <button class="btn primary" onclick="openAIChat('heart')">Chat with Agent</button>
+                </div>
+                <div class="card full-width">
+                    <strong>Energy Booster</strong>
+                    <div class="subtle">Focus: Energy Boost, Japanese, Gluten-Free</div>
+                    <button class="btn primary" onclick="openAIChat('energy')">Chat with Agent</button>
+                </div>
+            </div>
+            <button class="btn primary full-width" onclick="openAIAgentModal()">Create New AI Agent</button>
+        </section>
+    </div>
+    <nav aria-label="Primary navigation">
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('discover')">Discover</button>
+            <button class="tab" onclick="switchTab('plan')">My Plan</button>
+            <button class="tab" onclick="switchTab('shop')">Shop</button>
+            <button class="tab" onclick="switchTab('profile')">Profile</button>
+        </div>
+    </nav>
 </div>
 
 <!-- Modal: Products -->
@@ -192,6 +348,8 @@
                     <option value="mediterranean">Mediterranean</option>
                     <option value="indian">Indian</option>
                     <option value="japanese">Japanese</option>
+                    <option value="mexican">Mexican</option>
+                    <option value="african">African</option>
                     <option value="vegetarian">Vegetarian</option>
                     <option value="halal">Halal</option>
                     <option value="kosher">Kosher</option>
@@ -208,6 +366,61 @@
             <h5>Your AI Agent is Ready!</h5>
             <p id="agentOutput"></p>
         </div>
+    </div>
+</div>
+
+<!-- Modal: AI Chat -->
+<div class="modal" id="aiChatModal" role="dialog" aria-modal="true" aria-label="AI Agent Chat">
+    <div class="panel">
+        <div class="row">
+            <h4 id="chatTitle">Chat with AI Agent</h4>
+            <button class="btn ghost" onclick="closeModal('aiChatModal')">Close</button>
+        </div>
+        <div class="chat-container">
+            <div class="chat-message ai">Hello! How can I help with your nutrition today? Ask about recipes, adjustments, or tips.</div>
+            <div class="chat-message user">Suggest a low-sodium Indian dinner.</div>
+            <div class="chat-message ai">Try Dal Tadka with whole wheat roti - 350 kcal, high in fiber, uses ethnic spices for flavor.</div>
+        </div>
+        <form class="chat-form">
+            <input type="text" placeholder="Type your question..." />
+            <button type="submit" class="btn primary">Send</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal: Edit Profile -->
+<div class="modal" id="editProfileModal" role="dialog" aria-modal="true" aria-label="Edit Profile">
+    <div class="panel">
+        <div class="row">
+            <h4>Edit Preferences</h4>
+            <button class="btn ghost" onclick="closeModal('editProfileModal')">Close</button>
+        </div>
+        <form class="ai-agent-form"> <!-- Reusing form style -->
+            <div class="form-group">
+                <label for="editHealthGoals">Health Goals</label>
+                <select id="editHealthGoals" multiple>
+                    <option value="heart" selected>Heart Health</option>
+                    <option value="energy" selected>Energy Boost</option>
+                    <option value="weight">Weight Balance</option>
+                    <option value="focus">Mental Focus</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editCulturalPrefs">Cultural Preferences</label>
+                <select id="editCulturalPrefs" multiple>
+                    <option value="indian" selected>Indian</option>
+                    <option value="vegetarian" selected>Vegetarian</option>
+                    <option value="halal" selected>Halal</option>
+                    <option value="mediterranean">Mediterranean</option>
+                    <option value="japanese">Japanese</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="editDietaryNeeds">Dietary Needs</label>
+                <textarea id="editDietaryNeeds">Low sodium, High fiber, No dairy allergies</textarea>
+            </div>
+            <button type="submit" class="btn primary full-width">Save Changes</button>
+        </form>
     </div>
 </div>
 
